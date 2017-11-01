@@ -1,0 +1,41 @@
++#include<iostream>
+ +using namespace std;
+ +
+ +int main()
+ +{       int i,j,x,y;
+ +        cout<<"enter the row ";
+ +        cin>>i;
+ +        cout<<"enter the column";
+ +        cin>>j;
+ +        int arr1[i][j];
+ +        int arr2[i][j];
+ +        int arr3[i][j];
+ +        for(x=0;x<i;x++)
+ +        {
+ +            for(y=0;y<j;y++)
+ +            {
+ +                cin>>arr1[x][y];
+ +            }
+ +
+ +        }
+ +
+ +        for(x=0;x<i;x++)
+ +        {
+ +            for(y=0;y<j;y++)
+ +            {
+ +                cin>>arr2[x][y];
+ +            }
+ +
+ +        }
+ +
+ +                for(x=0;x<i;x++)
+ +        {
+ +            for(y=0;y<j;y++)
+ +            {
+ +                arr3[x][y]=arr1[x][y]+arr2[x][y];
+ +                cout<<arr3[x][y]<<endl;
+ +            }
+ +
+ +        }
+ +        return 0;
+ +}

@@ -5,35 +5,25 @@ int main()
 {       int i,j,x,y;
         cout<<"enter the row ";
         cin>>i;
-        cout<<"enter the column";
+        cout<<"enter the column ";
         cin>>j;
         int arr1[i][j];
-        int arr2[i][j];
-        int arr3[i][j];
+        cout<<"Input Matrix:"<<endl;
         for(x=0;x<i;x++)
         {
             for(y=0;y<j;y++)
             {
+                cout<<"enter the row "<<x+1<<" column "<<y+1<<" ";
                 cin>>arr1[x][y];
             }
 
         }
-
+        cout<<"Output Matrix:"<<endl;
         for(x=0;x<i;x++)
         {
             for(y=0;y<j;y++)
             {
-                cin>>arr2[x][y];
-            }
-
-        }
-
-                for(x=0;x<i;x++)
-        {
-            for(y=0;y<j;y++)
-            {
-                arr3[x][y]=arr1[x][y]+arr2[x][y];
-                cout<<arr3[x][y]<<endl;
+                cout<<arr1[y][x]<<endl;
             }
 
         }

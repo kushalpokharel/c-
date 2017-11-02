@@ -1,0 +1,60 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{       int i,j,x,y,z,a,b,add=0;
+        cout<<"For 1st matrix:"<<endl;
+        cout<<"enter the row ";
+        cin>>i;
+        cout<<"enter the column ";
+        cin>>j;
+        int arr1[i][j];
+        cout<<"For second matrix:"<<endl;
+        cout<<"enter the row ";
+        cin>>a;
+        cout<<"enter the column ";
+        cin>>b;
+         if(j!=a)
+        {
+            cout<<"this process cant be done with given data";
+            return 0;
+        }
+        cout<<"Input Matrix1: "<<endl;
+        for(x=0;x<i;x++)
+        {
+            for(y=0;y<j;y++)
+            {
+                cout<<"enter the row "<<x+1<<" column "<<y+1<<" ";
+                cin>>arr1[x][y];
+            }
+
+        }
+
+        int arr2[a][b];
+        cout<<"Input Matrix 2:"<<endl;
+        for(x=0;x<a;x++)
+        {
+            for(y=0;y<b;y++)
+            {
+                cout<<"enter the row "<<x+1<<" column "<<y+1<<" ";
+                cin>>arr2[x][y];
+            }
+        }
+
+        int mult[i][b];
+        for (x=0;x<i;x++)
+        {
+            for(y=0;y<b;y++)
+            { add=0;
+
+            for(z=0;z<a;z++)
+            {
+                add=add+arr1[x][z]*arr2[z][y];
+                mult[x][y]=add;
+            }
+            cout<<"Output Matrix:";
+            cout<<"row " <<x+1<<"column "<<y+1<<" "<<mult[x][y]<<endl;
+            }
+        }
+        return 0;
+}

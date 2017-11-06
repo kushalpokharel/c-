@@ -1,0 +1,37 @@
+#include <iostream>
+#include <cstdlib>
+#include<ctime>
+using namespace std;
+
+int main()
+{   int maximum,input,random;
+    string choice;
+    int x=0;
+    cout<<"enter the maimum number to which you want to play"<<endl;
+    cin>> maximum;
+    while(x<100)
+    {
+    srand(time(NULL));
+    int x=rand();
+    random=1+(x%maximum);
+
+    while(random!=input)
+    {
+        cout<<"Guess the number between 1 and "<<maximum<<": ";
+        cin>>input;
+        if(input>random)
+            cout<<"Your guess is greater"<<endl;
+        else if(input<random)
+            cout<<"Your guess is smaller"<<endl;
+        else
+            cout<<"Wow! Your guess is correct :) "<<endl;
+
+    }
+    cout<<"Wanna play again? " <<" Press any letter for yes and N for no ";
+    cin>>choice;
+
+    if(choice=="N")
+        break;
+    }
+    return 0;
+}

@@ -1,0 +1,246 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+
+int convert(int y,int m,int d)
+{
+    int rem,century,add,a;
+    rem=y%100;
+    a=rem;
+    rem=rem/4;
+    rem+=d;
+    rem+=key(m);
+    if(leapyear(y)==1&&(m==1||m==2))
+        rem--;
+    century=y/100;
+    if(century==19)
+        add=0;
+    else if(century==18)
+        add=2;
+    else if(century==20)
+        add=6;
+    else if(century==17)
+        add=4;
+    rem+=add;
+    rem+=a;
+    rem=rem%7;
+    printday(rem);
+    return rem;
+}
+
+int daysnum(int yr,int month)
+{
+   if(month==1||month==3||month==5||month==7||month==8||month==10||month==12)
+    return 31;
+   else if(month==2&&leapyear(yr)==0)
+    return 28;
+   else if(month==2&&leapyear(yr)==1)
+    return 29;
+   else if(month==4||month==6||month==9||month==11)
+    return 30;
+}
+
+int key(int month)
+{
+    switch(month)
+    {
+            case 1 :
+        return 1;
+            case 2:
+        return 4;
+            case 3 :
+        return 4;
+            case 4 :
+        return 0;
+            case 5 :
+        return 2;
+            case 6 :
+        return 5;
+            case 7 :
+        return 0;
+            case 8 :
+        return 3;
+            case 9 :
+        return 6;
+            case 10 :
+        return 1;
+            case 11 :
+        return 4;
+            case 12 :
+        return 6;
+
+    }
+}
+
+int leapyear(int year)
+{
+    if(year%4==0||((year%100)==0&&(year%400)==0))
+       return 1;
+    else
+        return 0;
+}
+
+int printday(int day)
+{
+      if(day==1)
+        printf ("Sunday");
+      if(day==2)
+        printf ("Monday");
+      if(day==3)
+        printf ("Tuesday");
+      if(day==4)
+        printf ("Wednesday");
+      if(day==5)
+        printf ("Thursday");
+      if(day==6)
+        printf ("Friday");
+       if(day==0)
+        printf ("Saturday");
+    printf("\n\n");
+}
+
+int addmemo()
+{   int a=1;
+    while(a!=6)
+    {
+    int ch;
+    printf("1.Add a new note\n");
+    printf("2.View notes \n");
+    printf("3.Reset all\n");
+    printf("4.Main menu\n\n\n");
+    scanf("%d",&ch);
+    char str[50],another ='Y',note[50];
+    FILE *fp,*fpt;
+    int y,m,d,year,month,day;
+    if (fp==NULL){
+            printf("could not load");
+            exit(1);
+    }
+    if(ch==1)
+    { 
+	int a=1;
+    	fp=fopen("memo.txt","a");
+        //fseek(fp,0,SEEK_END);
+        while(another=='Y'||another=='y')
+        {
+            printf("enter the date and note ");
+            scanf("%d %d %d %[^\n]s ",&y,&m,&d,str);
+            fprintf(fp,"%d %d %d %s\n",y,m,d,str);
+            printf("want to add another note(y for yes)\n\n ");
+            fflush(stdin);
+            another =getch();
+            a++;
+        } 
+    	fclose(fp);
+	}
+    if (ch==2)
+    {	
+		fp=fopen("memo.txt","r");
+        char c;
+        while (1)
+        {
+          c=fgetc(fp);
+          if (c==EOF)
+        	break;
+		  printf("%c",c);  
+        }
+        printf("\n\n");
+        fclose(fp);
+    }
+    if(ch==3)
+    {
+		fp=fopen("memo.txt","w");
+		fclose(fp);
+	}
+	
+    
+	if(ch==4)
+	{
+    return 0;
+	}
+}
+}
+
+void calender(int year,int month)
+{
+    int arr1 [36]={' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '};
+    int i,a;
+    int length=daysnum(year,month);
+    int din=convert(year,month,1);
+    char alpha;
+    a=1;
+    if (din==0)
+        din=7;
+    for(i=0;i<din-1;i++)
+    {
+        arr1[i]=0;
+    }
+
+    for (i=din-1;i<din+length-1;i++)
+    {
+        arr1[i]=a;
+        a++;
+    }
+
+    for(i=din+length-1;i<=36;i++)
+    {
+        arr1[i]=0;
+    }
+    while(1){
+    printf("| sun    | mon    | tue    | wed    | thu    | fri    | sat    |\n");
+    printf("----------------------------------------------------------------\n");
+    printf("| %4d   | %4d   | %4d   | %4d   | %4d   | %4d   | %4d   |\n",arr1[0],arr1[1],arr1[2],arr1[3],arr1[4],arr1[5],arr1[6]);
+    printf("----------------------------------------------------------------\n");
+    printf("| %4d   | %4d   | %4d   | %4d   | %4d   | %4d   | %4d   |\n",arr1[7],arr1[8],arr1[9],arr1[10],arr1[11],arr1[12],arr1[13]);
+    printf("----------------------------------------------------------------\n");
+    printf("| %4d   | %4d   | %4d   | %4d   | %4d   | %4d   | %4d   |\n",arr1[14],arr1[15],arr1[16],arr1[17],arr1[18],arr1[19],arr1[20]);
+    printf("----------------------------------------------------------------\n");
+    printf("| %4d   | %4d   | %4d   | %4d   | %4d   | %4d   | %4d   |\n",arr1[21],arr1[22],arr1[23],arr1[24],arr1[25],arr1[26],arr1[27]);
+    printf("----------------------------------------------------------------\n");
+    printf("| %4d   | %4d   | %4d   | %4d   | %4d   | %4d   | %4d   |\n",arr1[28],arr1[29],arr1[30],arr1[31],arr1[32],arr1[33],arr1[34]);
+    printf("----------------------------------------------------------------\n");
+    printf("| %4d   | %4d   |",arr1[35],arr1[36]);
+    if(getch())
+        break;
+}
+}
+int main()
+{
+    int num,year,month,day,yyy,mmm;
+    while (1){
+    printf("1.Convert date into day\n");
+    printf("2.View the calender of the month\n");
+    printf("3.Memo\n");
+    printf("4.Exit\n\n");
+    scanf("%d",&num);
+    system ("cls");
+    if(num==1)
+    	{
+            printf("what date you want to convert to day(yyyy/mm/dd)\n");
+            scanf("%d %d %d",&year,&month,&day);
+            convert(year,month,day);
+            printf("\npress any key to return to main menu");
+            getch();
+    	}
+    if(num==2)
+        {
+            printf("what month calender do you want to view? (yyyy/mm)\n");
+            scanf("%d %d ",&yyy,&mmm);
+            calender(yyy,mmm);
+        }
+
+    if(num==3)
+        {
+                addmemo();
+                getch();
+        }
+
+    else if (num==4)
+        exit(1);
+        
+system ("cls");
+}
+
+}
+
+
